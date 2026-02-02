@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Chin Cheong Ghee</title>
+    <style>
+        /* CSS Styles for a Professional Look */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .payment-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            background-color: #003087; /* PayPal Blue */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .currency-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #f9f9f9;
+            font-size: 16px;
+        }
+
+        input[type="number"] {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .pay-btn {
+            background-color: #003087;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .pay-btn:hover {
+            background-color: #001c64;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* PayPal Icon placeholder */
+        .pp-logo {
+            font-style: italic;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-card">
+        <div class="profile-img">CCG</div>
+        <h1>Pay Chin Cheong Ghee</h1>
+        <p>Secure payment via PayPal Business</p>
+
+        <div class="input-group">
+            <label>Enter Amount</label>
+            <div class="currency-wrapper">
+                <select id="currency">
+                    <option value="MYR">MYR</option>
+                    <option value="SGD">SGD</option>
+                    <option value="USD">USD</option>
+                </select>
+                <input type="number" id="amount" placeholder="0.00" step="0.01">
+            </div>
+        </div>
+
+        <!-- The Button triggers the JavaScript below -->
+        <button class="pay-btn" onclick="processPayment()">
+            <span class="pp-logo">P</span> Pay Now
+        </button>
+
+        <div class="footer">
+            <p>You will be redirected to PayPal to complete the transaction securely.</p>
+        </div>
+    </div>
+
+    <script>
+        function processPayment() {
+            // 1. Get the values from the inputs
+            var amount = document.getElementById('amount').value;
+            var currency = document.getElementById('currency').value;
+            var baseUrl = "https://www.paypal.com/paypalme/CHINCHEONGGHEE";
+
+            // 2. Validation: Ensure an amount is entered
+            if (!amount || amount <= 0) {
+                alert("Please enter a valid amount.");
+                return;
+            }
+
+            // 3. Construct the PayPal.me URL
+            // Format: paypal.me/User/AmountCurrencyCode
+            var finalUrl = baseUrl + "/" + amount + currency;
+
+            // 4. Redirect the user
+            window.location.href = finalUrl;
+        }
+    </script>
+
+</body>
+</html>
